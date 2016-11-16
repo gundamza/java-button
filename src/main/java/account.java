@@ -24,7 +24,7 @@ public class account {
 	public String getStage() { return stage; }
 	public void setStage(String stage) { this.stage = stage; }
 
-	public account (String Id) {
+	public account () {
 		
 		get("/", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
