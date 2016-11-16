@@ -39,15 +39,15 @@ public class account {
 	        connection = DatabaseUrl.extract().getConnection();
 
 	        Statement stmt = connection.createStatement();
-	        String sql = "select Id, Name from Salesforce.Account where Id = '" + Id + "'";
+	        String sql = "select Id, name, billingcity from Salesforce.Account where sfid = '" + Id + "'";
 	        //stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
 	        //stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
 	        ResultSet rs = stmt.executeQuery(sql);
 
 	        ArrayList<String> output = new ArrayList<String>();
 	        while (rs.next()) {
-	          name = rs.getString("Name");
-	          stage = rs.getString("billingcountry");
+	          name = rs.getString("name");
+	          stage = rs.getString("billingcity");
 	        }
 
 	        attributes.put("results", output);
