@@ -34,7 +34,7 @@ public class account {
 	        Statement stmt = connection.createStatement();
 	        //stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
 	        //stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
-	        ResultSet rs = stmt.executeQuery("SELECT Id, Name, billingstate FROM Salesforce.Account where Name = '" + Id + "'");
+	        ResultSet rs = stmt.executeQuery("SELECT * FROM Salesforce.Account");
 
 	        while (rs.next()) {
 	          name = rs.getString("Name");
