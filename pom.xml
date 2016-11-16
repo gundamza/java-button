@@ -25,7 +25,7 @@
     <dependency>
       <groupId>com.heroku.sdk</groupId>
       <artifactId>heroku-jdbc</artifactId>
-      <version>1.1.1</version>
+      <version>0.1.1</version>
     </dependency>
   </dependencies>
   <build>
@@ -69,14 +69,8 @@
       <plugin>
         <groupId>com.heroku.sdk</groupId>
         <artifactId>heroku-maven-plugin</artifactId>
-        <version>1.1.1</version>
+        <version>0.1.1</version>
       </plugin>
-      <configuration>
-	  	<appName>helloworld</appName>
-	  	<processTypes>
-			<web>java $JAVA_OPTS -cp target/classes:target/dependency/* Main</web>
-		</processTypes>
-	  </configuration>
     </plugins>
     
   </build>
