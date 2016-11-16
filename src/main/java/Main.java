@@ -56,7 +56,18 @@ public class Main {
         if (connection != null) try{connection.close();} catch(SQLException e){}
       }
     }, new FreeMarkerEngine());
-
+    
+    get("/Accounts", (req, res) -> {
+    	
+    	String id = req.queryParams("Id");
+    	
+    	account acc = new account(id);
+    	return acc.toString();
+    
+    });
+    
   }
+  
+  
 
 }
