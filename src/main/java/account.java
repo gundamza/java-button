@@ -24,7 +24,7 @@ public class account {
 	public String getStage() { return stage; }
 	public void setStage(String stage) { this.stage = stage; }
 
-	public account () {
+	public account (String Id) {
 		
 		get("/", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
@@ -39,13 +39,15 @@ public class account {
 	        connection = DatabaseUrl.extract().getConnection();
 
 	        Statement stmt = connection.createStatement();
+	        String sql = "select Id, Name from Salesforce.Account where Id = '" + Id + "'";
 	        //stmt.executeUpdate("CREATE TABLE IF NOT EXISTS ticks (tick timestamp)");
 	        //stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
-	        ResultSet rs = stmt.executeQuery("SELECT * FROM Salesforce.Account");
+	        ResultSet rs = stmt.executeQuery(sql);
 
 	        ArrayList<String> output = new ArrayList<String>();
 	        while (rs.next()) {
-	          output.add( "Read from DB: " + rs.getString("Name"));
+	          name = rs.getString("Name");
+	          stage = rs.getString("billingcountry");
 	        }
 
 	        attributes.put("results", output);
@@ -58,7 +60,7 @@ public class account {
 	
 	public String toString() {
 		
-		return name + " " + stage;
+		return "Name : " + name + " Stage : " + stage;
 		
 	}
 	

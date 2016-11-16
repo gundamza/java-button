@@ -60,7 +60,7 @@ public class Main {
     get("/Accounts", (req, res) -> {
     	
     	String id = req.queryParams("Id");
-    	account acc = new account();
+    	account acc = new account(id);
     	return acc.toString();
     
     });
