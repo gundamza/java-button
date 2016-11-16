@@ -26,8 +26,15 @@ public class account {
 
 	public account (String Id) {
 		
-		Connection connection = null;
+		get("/", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            attributes.put("message", "Hello World!");
+
+            return new ModelAndView(attributes, "index.ftl");
+        }, new FreeMarkerEngine());
 		
+		Connection connection = null;
+	      Map<String, Object> attributes = new HashMap<>();
 	      try {
 	        connection = DatabaseUrl.extract().getConnection();
 
@@ -36,19 +43,17 @@ public class account {
 	        //stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
 	        ResultSet rs = stmt.executeQuery("SELECT * FROM Salesforce.Account");
 
+	        ArrayList<String> output = new ArrayList<String>();
 	        while (rs.next()) {
-	          name = rs.getString("Name");
-	          stage = rs.getString("billingstate");
+	          output.add( "Read from DB: " + rs.getString("Name"));
 	        }
 
+	        attributes.put("results", output);
 	      } catch (Exception e) {
-	    	  
-	    	  e.getMessage();
-	    	  
+	        attributes.put("message", "There was an error: " + e);
 	      } finally {
 	        if (connection != null) try{connection.close();} catch(SQLException e){}
 	      }
-
 	}
 	
 	public String toString() {
